@@ -5,6 +5,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const {NODE_ENV} = require('./config');
 //const validateBearerToken = require('./validate-bearer-token')
+const foldersRouter = require('./folders/folders-router')
+const notesRouter = require('./notes/notes-router')
 const errorHandler = require('./error-handler')
 //const uuid = require('uuid/v4');
 
@@ -22,6 +24,9 @@ app.use(helmet());
 app.use(cors());
 
 //app.use(validateBearerToken)
+
+app.use('api/folders', foldersRouter)
+app.use('api/notes', notesRouter)
 
 app.get('/', (req, res) =>{
     res.send('Hello, world!');
